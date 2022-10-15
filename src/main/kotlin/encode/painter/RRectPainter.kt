@@ -10,7 +10,7 @@ import top.e404.skiko.util.withCanvas
 
 object RRectPainter : QrPainter<RRectPainterData> {
     override fun paint(matrix: BitMatrix, margin: Int, hints: RRectPainterData): Image {
-        val (scale, spacing, radius, c, bg, bgMatrix, logo, logoScale, logoRadius) = hints
+        val (scale, radius, c, bg, bgMatrix, logo, logoScale, logoRadius) = hints
         val m = (margin * scale).toInt()
         val mm = (margin * scale / 2).toInt()
         val surface = Surface.makeRasterN32Premul(
@@ -40,13 +40,31 @@ object RRectPainter : QrPainter<RRectPainterData> {
                 ).forEach { (x, y) ->
                     // 中心
                     drawRRect(
-                        r = RRect.makeXYWH((x - 1) * scale + mm + s, (y - 1) * scale + mm + s, scale * 3 - ss, scale * 3 - ss, radius),
+                        r = RRect.makeXYWH(
+                            l = (x - 1) * scale + mm + s,
+                            t = (y - 1) * scale + mm + s,
+                            w = scale * 3 - ss,
+                            h = scale * 3 - ss,
+                            radius = radius
+                        ),
                         paint = paint
                     )
                     // 外圈
                     drawDRRect(
-                        outer = RRect.makeXYWH((x - 3) * scale + mm + s, (y - 3) * scale + mm + s, scale * 7 - ss, scale * 7 - ss, radius * 3),
-                        inner = RRect.makeXYWH((x - 2) * scale + mm - s, (y - 2) * scale + mm - s, scale * 5 + ss, scale * 5 + ss, radius),
+                        outer = RRect.makeXYWH(
+                            l = (x - 3) * scale + mm + s,
+                            t = (y - 3) * scale + mm + s,
+                            w = scale * 7 - ss,
+                            h = scale * 7 - ss,
+                            radius = radius * 3
+                        ),
+                        inner = RRect.makeXYWH(
+                            l = (x - 2) * scale + mm - s,
+                            t = (y - 2) * scale + mm - s,
+                            w = scale * 5 + ss,
+                            h = scale * 5 + ss,
+                            radius = radius
+                        ),
                         paint = paint
                     )
                 }
@@ -67,8 +85,8 @@ object RRectPainter : QrPainter<RRectPainterData> {
                     // bit点
                     drawRRect(
                         r = RRect.makeXYWH(
-                            l = x * scale + mm,
-                            t = y * scale + mm,
+                            l = x * scale + mm + s,
+                            t = y * scale + mm + s,
                             w = size,
                             h = size,
                             radius = radius
@@ -99,8 +117,8 @@ object RRectPainter : QrPainter<RRectPainterData> {
                 // bit点
                 drawRRect(
                     r = RRect.makeXYWH(
-                        l = x * scale + mm,
-                        t = y * scale + mm,
+                        l = x * scale + mm + s,
+                        t = y * scale + mm + s,
                         w = size,
                         h = size,
                         radius = radius

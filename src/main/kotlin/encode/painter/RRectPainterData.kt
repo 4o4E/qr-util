@@ -8,7 +8,6 @@ import top.e404.skiko.Colors
 
 data class RRectPainterData(
     var scale: Float = 30F,
-    var spacing: Float = scale / 20F,
     var radius: Float = 8F,
     var color: Int = Colors.BLACK.argb,
     var bg: ImageOrInt = ImageOrInt(Colors.WHITE.argb),
