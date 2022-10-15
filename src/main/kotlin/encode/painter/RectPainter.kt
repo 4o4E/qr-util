@@ -9,7 +9,11 @@ import top.e404.skiko.util.subCenter
 import top.e404.skiko.util.withCanvas
 
 object RectPainter : QrPainter<RectPainterData> {
-    override fun paint(matrix: BitMatrix, margin: Int, hints: RectPainterData): Image {
+    override fun paint(
+        matrix: BitMatrix,
+        margin: Int,
+        hints: RectPainterData
+    ): Image {
         val (scale, c, bg, bgMatrix, logo, logoScale, logoRadius) = hints
         val m = (margin * scale).toInt()
         val mm = (margin * scale / 2).toInt()
