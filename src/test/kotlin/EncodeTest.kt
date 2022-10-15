@@ -25,7 +25,6 @@ class EncodeTest {
             margin = 3,
             hints = RRectPainterData(
                 scale = 30F,
-                spacing = 30F,
                 color = Colors.BLACK.argb,
                 bg = ImageOrInt(bg),
                 bgImageColorMatrix = ColorMatrix(
