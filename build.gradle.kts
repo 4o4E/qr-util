@@ -44,6 +44,16 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+tasks.jar {
+    doLast {
+        println("==== copy ====")
+        for (file in File("build/libs").listFiles() ?: emptyArray()) {
+            println("正在复制`${file.path}`")
+            file.copyTo(File("jar/${file.name}"), true)
+        }
+    }
+}
+
 java {
     withJavadocJar()
     withSourcesJar()
