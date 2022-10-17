@@ -86,9 +86,7 @@ object QrDecoder {
         image = BufferedImage(w, h, image.type).also {
             it.graphics.drawImage(image, 0, 0, w, h, null)
         }
-        val source = BufferedImageLuminanceSource(image.binaryzation(c, range).gray().also {
-            ImageIO.write(it, "png", File("t.png"))
-        })
+        val source = BufferedImageLuminanceSource(image.binaryzation(c, range).gray())
         return try {
             QRCodeReader().decode(BinaryBitmap(HybridBinarizer(source)), hints).text
         } catch (e: Exception) {
